@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { phrases } from "../../data/phrases";
 
 const Cell = ({ p1, p2 }) => {
-    const [cellArray, setCellArray] = useState([])
+    const [cellArray, setCellArray] = useState([...phrases])
     const [selectedIndex, setSelectedIndex] = useState([[0,[]],[1,[]],[2,[2]],[3,[]],[4,[]]])
     
     
@@ -15,12 +15,12 @@ const Cell = ({ p1, p2 }) => {
         return res;
     }
     
-    useEffect(() => {
-        console.log('useEffect')
-        setCellArray(sliceIntoChunks(phrases,5))
-        console.log('useEffect')
+    // useEffect(() => {
+    //     console.log('useEffect')
+    //     setCellArray(sliceIntoChunks(phrases,5))
+    //     console.log('useEffect')
 
-    }, [])
+    // }, [])
 
     function handleCell(p1,p2) {
         // let selectedList = selectedIndex;
@@ -47,8 +47,8 @@ const Cell = ({ p1, p2 }) => {
             <div className="cell">
                 {
                     (p1===2 && p2===2) ? 
-                    'Star':
-                    cellArray[p1][p2]
+                    '*':
+                    cellArray[p1+p2]
                 }
             </div>
             // : <div/>
