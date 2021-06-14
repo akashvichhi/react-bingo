@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CssBaseline } from '@material-ui/core';
-import CardActions from '@material-ui/core/CardActions';
+import { Card, CssBaseline, Collapse } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -10,34 +9,53 @@ const useStyles = makeStyles({
   root: {
     // minWidth: ,
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+  card: {
+    border: 0,
+    borderRadius: 0,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    "&:hover .MuiButton-text": {
+      backgroundColor: "#9999ff",
+    },
+    "&.active .MuiButton-text": {
+      backgroundColor: "#3333ff",
+      color: "#fff",
+    },
   },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
+  cardBtn: {
+    color: "#111",
+    borderRadius: 0,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    top: 0,
+    width: "100%",
   },
 });
 
 export default function SimpleCard(props) {
   const classes = useStyles();
+  const { cardText, cardIndex } = props;
   const bull = <span className={classes.bullet}>•</span>;
 
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClickBox = function () {
+    setIsActive(!isActive);
+    props.handleCardClick(cardIndex);
+  }
+
   return (
-    <div>
-    <CssBaseline />
-    <Card variant="outlined">
-      <CardContent>
+    <Card variant="outlined" className={classes.card + (isActive || cardIndex == 13 ? " active" : "")}>
+      <Button className={classes.cardBtn} onClick={handleClickBox} disabled={cardIndex == 13}>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
+          {cardText}
         </Typography>
-      </CardContent>
+      </Button>
     </Card>
-    </div>
   );
 }
 
