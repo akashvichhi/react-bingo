@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(5, auto);
+
+}
+
+.cell {
+  padding: 10px;
+  min-height: 40px;
+  font-weight: bold;
+  font-size: 20px;
+  width: 10rem;
+  height: 5rem;
+  border: 4px saddlebrown dashed;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.board {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
